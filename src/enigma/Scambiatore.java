@@ -9,10 +9,13 @@ package enigma;
  *
  * @author vimat
  */
-public class Scambiatore extends Rotore{
+public class Scambiatore extends Macchina{
     
     public Scambiatore(int[] values) {
-        super(values);
+        for(int i=0;i<values.length;i++){
+            rotore_front[i]=values[i];
+        }
     }
     
+   
 }

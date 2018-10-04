@@ -9,10 +9,12 @@ package enigma;
  *
  * @author vimat
  */
-public class Riflettore extends Rotore{
+public class Riflettore extends Macchina{
     
     public Riflettore(int[] values) {
-        super(values);
+        for(int i=0;i<values.length;i++){
+            rotore_front[i]=values[i];
+        }
     }
 
 }
