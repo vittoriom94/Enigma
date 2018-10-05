@@ -11,7 +11,6 @@ package enigma;
  */
 public class Codificatore {
     int i,j,k;
-    int[] v = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25};
     Rotore primo;
     Rotore secondo;
     Rotore terzo;
@@ -26,9 +25,22 @@ public class Codificatore {
         this.scambiatore = new Scambiatore(scambiatore);
         this.riflettore = new Riflettore(riflettore);
         
+        System.out.println(primo.toString()+"\n"+secondo.toString()+"\n"+terzo.toString());
+        
     }
     
     public void carica(String messaggio){
+        /*
+        for (int z = 0;z<12;z++){
+                
+            primo.shift();
+        }
+        for (int z = 0;z<5;z++){
+            secondo.shift();
+        }
+        for (int z = 0;z<24;z++){
+            terzo.shift();
+        }*/
         String codifica = "";
         for(char c : messaggio.toCharArray()){
             if (c != 32){
@@ -43,20 +55,33 @@ public class Codificatore {
     
     public  int traduci(int v){
      System.out.println("valore iniziale " + v);
-     v = scambiatore.getValueFront(v);
-     v = primo.getValueFront(v,i);
-     v = secondo.getValueFront(v,j);
-     v = terzo.getValueFront(v,k);
-     v = riflettore.getValueFront(v);
-     v = terzo.getValueBack(v,k);
-     v = secondo.getValueBack(v,j);
-     v = primo.getValueBack(v,i);
-     v = scambiatore.getValueFront(v);
      controlla_rotazione();
      
+     v = scambiatore.getValueFront(v);
+     v = primo.getValueFront(v,i+12);
+     v = secondo.getValueFront(v,j+5);
+     v = terzo.getValueFront(v,k+24);
+     v = riflettore.getValueFront(v);
+     v = terzo.getValueBack(v,k+24);
+     v = secondo.getValueBack(v,j+5);
+     v = primo.getValueBack(v,i+12);
+     v = scambiatore.getValueFront(v);
+     /*
+     
+     v = scambiatore.getValueFront(v);
+     v = primo.getValueFront(v);
+     v = secondo.getValueFront(v);
+     v = terzo.getValueFront(v);
+     v = riflettore.getValueFront(v);
+     v = terzo.getValueBack(v);
+     v = secondo.getValueBack(v);
+     v = primo.getValueBack(v);
+     v = scambiatore.getValueFront(v);
+     */
      System.out.println("valore finale " + v);
      return v;
     }
+    
     public void controlla_rotazione(){
         i++;
         //primo.shift();

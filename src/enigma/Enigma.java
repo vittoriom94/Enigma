@@ -6,6 +6,7 @@
 package enigma;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,11 +23,34 @@ public class Enigma {
     public static void main(String[] args) {
         try {
             
-            int[] v = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25};
-            
-            int[] v2 = {25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0};
-            Codificatore c = new Codificatore(v,v,v,v,v2);
-            c.carica("ZABCDEFGHIJKLMNOPQRSTUVWXY PZNPJFHHD QN IINIF");
+            String s1 = "EJ OY IV AQ KW FX MT PS LU BD";
+           String s2 = "IU AS DV GL FT OX EZ CH MR KN BQ PW JY";
+           String stampa = "";
+           /*for(char c : s.toCharArray()){
+               stampa = stampa + (int)(c-65) + ",";
+           }*/
+           int[] scamb = new int[26];
+           int[] rifl = new int[26];
+           Arrays.fill(scamb, -1);
+           for(String c: s1.split(" ")){
+               scamb[(int)(c.charAt(0)-65)] = (int)(c.charAt(1)-65);
+               scamb[(int)(c.charAt(1)-65)] = (int)(c.charAt(0)-65);        
+           }
+           for(int x = 0; x<scamb.length;x++){
+               if (scamb[x] == -1){
+                   scamb[x] = x;
+               }
+           }
+           for(String c: s2.split(" ")){
+               rifl[(int)(c.charAt(0)-65)] = (int)(c.charAt(1)-65);
+               rifl[(int)(c.charAt(1)-65)] = (int)(c.charAt(0)-65);        
+           }
+           System.out.println(stampa);  
+            int[] primo = {1,3,5,7,9,11,2,15,17,19,23,21,25,13,24,4,8,22,6,0,10,12,20,18,16,14};
+            int[] secondo = {4,18,14,21,15,25,9,0,24,16,20,8,17,7,23,11,13,5,19,6,10,3,2,12,22,1};
+            int[] terzo = {4,10,12,5,11,6,3,16,21,25,13,19,14,22,24,7,23,20,18,15,0,8,1,17,2,9};
+            Codificatore c = new Codificatore(primo,secondo,terzo,scamb,rifl);
+            c.carica("MESSAGGIO");
             int x;
             do {
                 x = System.in.read();

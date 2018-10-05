@@ -19,20 +19,36 @@ public class Rotore extends Macchina{
             rotore_back[values[i]] = i;
         }
     }
+    
      public int getValueFront(int i,int shift){
         
-        System.out.println(this.toString2());
         
-        int value = i<shift ? i+26-shift : i-shift;
+        
+        //int value = i<shift ? i+26-shift : i-shift;
+        int value = (i-shift);
+        while(value < 0){
+            value = value+26;
+        }
+        value = value%26;
+        System.out.println(this.toString() + " | " + i + " " + shift + " " + value + " " + rotore_front[value]);
         return rotore_front[value];
     }
     public int getValueBack(int i,int shift){
+   
         
-        System.out.println(this.toString2() + " " + i + " " + shift);
+        //int value = i+shift>=26 ? i-26+shift : i+shift;
+        int value = (i+shift)%26;
+        System.out.println(this.toString2() + " | " + i + " " + shift + " " + value + " " + rotore_back[value]);
         
-        int value = i+shift>=26 ? i-26+shift : i+shift;
         return rotore_back[value];
-    }/*
+    }
+    /*
+    public int getValueFront(int i){
+        
+        System.out.println(this.toString());
+        
+        return rotore_front[i];
+    }
     public int getValueBack(int i){
         
         System.out.println(this.toString2());
@@ -48,6 +64,8 @@ public class Rotore extends Macchina{
         }
         rotore_front[0] = end;
         rotore_back[end] = 0;
+        
+            System.out.println("Rotazione " + this.toString());
     }
     public String toString2(){
         String a = "";
