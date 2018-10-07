@@ -50,22 +50,24 @@ public class Codificatore {
                 codifica = codifica + " ";
             }
         }
-        System.out.println(codifica);
+        System.out.println("Messaggio iniziale: " + messaggio + "\n" + "Codifica: " + codifica);
     }
     
     public  int traduci(int v){
      System.out.println("valore iniziale " + v);
-     controlla_rotazione();
      
+     // SOMMARE A i LO SPOSTAMENTO INIZIALE
+     controlla_rotazione();
      v = scambiatore.getValueFront(v);
-     v = primo.getValueFront(v,i+12);
-     v = secondo.getValueFront(v,j+5);
-     v = terzo.getValueFront(v,k+24);
+     v = primo.getValueFront(v,i+9);
+     v = secondo.getValueFront(v,j+23);
+     v = terzo.getValueFront(v,k+5);
      v = riflettore.getValueFront(v);
-     v = terzo.getValueBack(v,k+24);
-     v = secondo.getValueBack(v,j+5);
-     v = primo.getValueBack(v,i+12);
+     v = terzo.getValueBack(v,k+5);
+     v = secondo.getValueBack(v,j+23);
+     v = primo.getValueBack(v,i+9);
      v = scambiatore.getValueFront(v);
+  
      /*
      
      v = scambiatore.getValueFront(v);

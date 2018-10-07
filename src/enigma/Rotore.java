@@ -21,10 +21,11 @@ public class Rotore extends Macchina{
     }
     
      public int getValueFront(int i,int shift){
-        
-        
-        
-        //int value = i<shift ? i+26-shift : i-shift;
+        //int value = ((rotore_front[((i+shift)%26+26)%26]-shift)%26+26)%26;
+        //System.out.println("Ingresso: "+ i + " Shift " + shift+ " Valore base " + rotore_front[((i+shift)%26+26)%26] + " Uscita rotore " + value);
+        return ((rotore_front[((i+shift)%26+26)%26]-shift)%26+26)%26;
+        // Versione precedente
+        /*
         int value = (i-shift);
         while(value < 0){
             value = value+26;
@@ -32,15 +33,18 @@ public class Rotore extends Macchina{
         value = value%26;
         System.out.println(this.toString() + " | " + i + " " + shift + " " + value + " " + rotore_front[value]);
         return rotore_front[value];
+        */
+        
     }
     public int getValueBack(int i,int shift){
-   
+        //int value = ((rotore_back[((i+shift)%26+26)%26]-shift)%26+26)%26;
+        //System.out.println("Ingresso " + i + " " + "Uscita rotore back " + value);
+        return ((rotore_back[((i+shift)%26+26)%26]-shift)%26+26)%26;
+        // Versione precedente
+        /*
+        System.out.println(this.toString2() + " | " + i + " " + shift + " " + (rotore_back[i] +shift)%26);
         
-        //int value = i+shift>=26 ? i-26+shift : i+shift;
-        int value = (i+shift)%26;
-        System.out.println(this.toString2() + " | " + i + " " + shift + " " + value + " " + rotore_back[value]);
-        
-        return rotore_back[value];
+        return (rotore_back[i] +shift)%26;*/
     }
     /*
     public int getValueFront(int i){
