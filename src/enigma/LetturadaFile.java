@@ -93,7 +93,6 @@ public class LetturadaFile {
 
 			}
 			
-
 		}
 		i=0;
 			
