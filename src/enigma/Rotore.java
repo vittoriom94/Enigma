@@ -23,7 +23,9 @@ public class Rotore extends Macchina{
      public int getValueFront(int i,int shift){
         //int value = ((rotore_front[((i+shift)%26+26)%26]-shift)%26+26)%26;
         //System.out.println("Ingresso: "+ i + " Shift " + shift+ " Valore base " + rotore_front[((i+shift)%26+26)%26] + " Uscita rotore " + value);
-        return ((rotore_front[((i+shift)%26+26)%26]-shift)%26+26)%26;
+        System.out.println(this.toString(shift) + " | " + (((rotore_front[((i-shift)%26+26)%26]+shift)%26+26)%26) + " " + (rotore_front[((i-shift)%26+26)%26]) + " "+ i + " " + shift);
+       
+        return ((rotore_front[((i-shift)%26+26)%26]+shift)%26+26)%26;
         // Versione precedente
         /*
         int value = (i-shift);
@@ -39,12 +41,13 @@ public class Rotore extends Macchina{
     public int getValueBack(int i,int shift){
         //int value = ((rotore_back[((i+shift)%26+26)%26]-shift)%26+26)%26;
         //System.out.println("Ingresso " + i + " " + "Uscita rotore back " + value);
-        return ((rotore_back[((i+shift)%26+26)%26]-shift)%26+26)%26;
+        System.out.println((this.toStringr2(shift) + " | " + i + " " + shift ));
+       
+        return ((rotore_back[((i-shift)%26+26)%26]+shift)%26+26)%26;
         // Versione precedente
-        /*
-        System.out.println(this.toString2() + " | " + i + " " + shift + " " + (rotore_back[i] +shift)%26);
         
-        return (rotore_back[i] +shift)%26;*/
+        
+        //return (rotore_back[i] +shift)%26;*/
     }
     /*
     public int getValueFront(int i){
@@ -71,12 +74,19 @@ public class Rotore extends Macchina{
         
             System.out.println("Rotazione " + this.toString());
     }
-    public String toString2(){
+    public String toStringr2(int shift){
         String a = "";
         for (int i = 0; i<26;i++){
-            a = a.concat(rotore_back[i] + " ");
+            a =a.concat((((rotore_back[((i-shift)%26+26)%26]+shift)%26+26)%26)+ " ");
         }
         return a;
     }
-
+    
+    public String toString(int shift){
+        String a = "";
+        for (int i = 0; i<26;i++){
+            a =a.concat((((rotore_front[((i+shift)%26+26)%26]-shift)%26+26)%26)+ " ");
+        }
+        return a;
+    }
 }

@@ -17,8 +17,10 @@ public class Codificatore {
     Riflettore riflettore;
     Scambiatore scambiatore;
     
-    public Codificatore(int[] first, int[] second, int[] third, int[] scambiatore, int[] riflettore){
-        i = j = k = 0;
+    public Codificatore(int[] first, int[] second, int[] third, int[] scambiatore, int[] riflettore,int i,int j,int k){
+        this.i = i;
+        this.j = j;
+        this.k=k;
         primo = new Rotore(first);
         secondo = new Rotore(second);
         terzo = new Rotore(third);
@@ -29,7 +31,7 @@ public class Codificatore {
         
     }
     
-    public void carica(String messaggio){
+    public String carica(String messaggio){
         /*
         for (int z = 0;z<12;z++){
                 
@@ -43,14 +45,15 @@ public class Codificatore {
         }*/
         String codifica = "";
         for(char c : messaggio.toCharArray()){
-            if (c != 32){
+            if (c>=65 && c<=90){
                 int x = this.traduci((c-65));
                 codifica = codifica + (char)(x+65);
             } else {
-                codifica = codifica + " ";
+                codifica = codifica + (char)c;
             }
         }
         System.out.println("Messaggio iniziale: " + messaggio + "\n" + "Codifica: " + codifica);
+        return codifica;
     }
     
     public  int traduci(int v){
@@ -59,13 +62,13 @@ public class Codificatore {
      // SOMMARE A i LO SPOSTAMENTO INIZIALE
      controlla_rotazione();
      v = scambiatore.getValueFront(v);
-     v = primo.getValueFront(v,i+9);
-     v = secondo.getValueFront(v,j+23);
-     v = terzo.getValueFront(v,k+5);
+     v = primo.getValueFront(v,i);
+     v = secondo.getValueFront(v,j);
+     v = terzo.getValueFront(v,k);
      v = riflettore.getValueFront(v);
-     v = terzo.getValueBack(v,k+5);
-     v = secondo.getValueBack(v,j+23);
-     v = primo.getValueBack(v,i+9);
+     v = terzo.getValueBack(v,k);
+     v = secondo.getValueBack(v,j);
+     v = primo.getValueBack(v,i);
      v = scambiatore.getValueFront(v);
   
      /*
@@ -101,6 +104,11 @@ public class Codificatore {
             }
         }
         
+    }
+    public void reset(int i, int j,int k){
+        this.i = i;
+        this.j = j;
+        this.k = k;
     }/*
     public void controlla_rotazione(){
         i++;
