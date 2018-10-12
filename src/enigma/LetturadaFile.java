@@ -49,14 +49,14 @@ public class LetturadaFile {
         FileReader f_r = null;
         int[] conf = new int[n_rot];
         
-        try {														//-------------------------------------------
+        try {														        //-------------------------------------------
             String absolutePath = new File("").getAbsolutePath();
             
             f_r = new FileReader(absolutePath.concat(path));
             b_r = new BufferedReader(f_r);
-            //Legge e valida per linea il file 
+                                                                                //Legge e valida per linea il file 
             String line;
-            //rotori.txt restituendo true se ben
+                                                                                //rotori.txt restituendo true se ben
             if (path == rot_path) {
                 String prefix = "Rotore#";
                 filename = "rotori.txt";										//formato, false altrimenti
@@ -66,31 +66,33 @@ public class LetturadaFile {
                         System.out.println(line);
                         i++;
                     }
+                    else
+                        return null;
 
                 }													//-------------------------------------------
 
                 i = 0;
 
-            } else if (path == conf_path) //-------------------------------------------
+            } else if (path == conf_path)                           //-------------------------------------------
             {
                 i = 0;
                 filename = "configurazione.txt";
 
-                while ((line = b_r.readLine()) != null) //Legge e valida per linea il file 
+                while ((line = b_r.readLine()) != null)             //Legge e valida per linea il file 
                 {
 
-                    if (!line.isEmpty()) //configurazione.txt restituendo i valori letti
+                    if (!line.isEmpty())                            //configurazione.txt restituendo i valori letti
                     {
                         res[i] = validateConfLine(line);
-                        //se corretti, in un vettore di	stringhe,					
+                                                                    //se corretti, in un vettore di	stringhe,					
                         i++;
                     }
-                    //altrimenti lanciando eccezione.
+                                                                    //altrimenti lanciando eccezione.
                 }
 
                 i = 0;
 
-                //-------------------------------------------
+                                                                    //-------------------------------------------
             } else if (path.equals(msg_path)){
                 String msg = "";
                 while ((line = b_r.readLine()) != null) {
@@ -141,11 +143,11 @@ public class LetturadaFile {
         int p = 0;
         int j = 0;
 
-        if (i % 2 == 0 && line.startsWith(prefix) == false) {
+        if (i % 2 == 0 && (line.startsWith(prefix) == false || Integer.parseInt(line.substring(7)) != rot + 1)) {
             rot++;
             System.out.println("\nFile rotori.txt non validato!");
             System.out.println("\nLa stringa del rotore n " + rot + " è mal formata!");
-            System.out.println("\nline" + line);
+            System.out.println("\n" + line);
 
             return false;
         } else if (i != 0 && i % 2 != 0) {
@@ -322,7 +324,6 @@ public class LetturadaFile {
 
         try {
 
-            //br = new BufferedReader(new FileReader(FILENAME));
             String absolutePath = new File("").getAbsolutePath();
             
             fr = new FileReader(absolutePath.concat(path));
@@ -332,7 +333,7 @@ public class LetturadaFile {
 
             j = 1;
             k = 0;
-            while ((line = br.readLine()) != null) {//System.out.println(line);
+            while ((line = br.readLine()) != null) {
                 for (i = 0; i < dim; i++) {
                     if (j == rots[i] * 2) {
                         rotori[k] = rots[i] + line;
