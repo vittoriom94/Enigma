@@ -59,7 +59,7 @@ public class LetturadaFile {
                                                                                 //rotori.txt restituendo true se ben
             if (path == rot_path) {
                 String prefix = "Rotore#";
-                filename = "rotori.txt";										//formato, false altrimenti
+                filename = "rotori.txt";						//formato, false altrimenti
 
                 while ((line = b_r.readLine()) != null) {
                     if (validateRotLine(line, prefix) == true) {
