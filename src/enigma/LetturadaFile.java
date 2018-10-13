@@ -1,5 +1,8 @@
 package enigma;
-
+/**
+*
+* @author carminann
+*/
 
 import java.io.*;
 import java.awt.*;
@@ -30,7 +33,6 @@ public class LetturadaFile {
         return messaggio;
     }
     public String[] getRotori(){
-        System.out.println("getRotori " + rotori[0]);
         return rotori;
     }
     public String getStartPosition(){
@@ -59,11 +61,10 @@ public class LetturadaFile {
                                                                                 //rotori.txt restituendo true se ben
             if (path == rot_path) {
                 String prefix = "Rotore#";
-                filename = "rotori.txt";						//formato, false altrimenti
+                filename = "rotori.txt";										//formato, false altrimenti
 
                 while ((line = b_r.readLine()) != null) {
                     if (validateRotLine(line, prefix) == true) {
-                        System.out.println(line);
                         i++;
                     }
                     else
@@ -96,7 +97,6 @@ public class LetturadaFile {
             } else if (path.equals(msg_path)){
                 String msg = "";
                 while ((line = b_r.readLine()) != null) {
-                    System.out.println("line " + line);
                     msg=msg+line;
 
                 }	
@@ -130,7 +130,6 @@ public class LetturadaFile {
         }
         i = 0;
 
-        System.out.println("\n");
 
         return res;
 
@@ -138,7 +137,6 @@ public class LetturadaFile {
 
     //valida il file rotori.txt
     public boolean validateRotLine(String line, String prefix) {
-        System.out.println("validateRotLine " + line);
         LinkedList<Character> vett = new LinkedList<Character>();
         int p = 0;
         int j = 0;
@@ -383,7 +381,6 @@ public class LetturadaFile {
                 ex.printStackTrace();
             }
         }
-        System.out.println("\n");
 
         return rotori;
 
@@ -396,15 +393,10 @@ public class LetturadaFile {
         
         this.readFile(rot_path);
         param = this.readFile(conf_path);
-        for (int i = 0; i < n_par; i++) {
-            System.out.println(param[i]);
-        }
+        
 
         rotori = this.configRotors(rot_path, param[0]);
-        for (int i = 0; i < n_rot; i++) {
-            System.out.println("Rotore n" + param[0].charAt(i * 2) + " " + rotori[i]);
-        }
+        
         messaggio = this.readFile(msg_path)[0];
-        System.out.println("Letturadafile messaggio: " + messaggio);
     }
 }
