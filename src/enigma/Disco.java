@@ -19,6 +19,7 @@ public class Disco {
         
     }
    
+    @Override
     public String toString(){
         String a = "";
         for (int i = 0; i<26;i++){

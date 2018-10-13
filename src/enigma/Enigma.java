@@ -24,15 +24,15 @@ public class Enigma {
     public static void main(String[] args) {
 
         
-        LetturadaFile rot = new LetturadaFile();
-        rot.lettura();
-        String[] rotori = rot.getRotori();
+        LetturadaFile files = new LetturadaFile();
+        files.lettura();
+        String[] rotori = files.getRotori();
 
-        String[] start = rot.getStartPosition().split(" ");
-        String scambString = rot.getScambiatore();
-        String riflString = rot.getRiflettore();
+        String[] start = files.getStartPosition().split(" ");
+        String scambString = files.getScambiatore();
+        String riflString = files.getRiflettore();
 
-        Codificatore c = new Codificatore(change(rotori[0]), change(rotori[1]), change(rotori[2]), getScambiatoreInt(scambString), getRiflettoreInt(riflString), Integer.parseInt(start[0]), Integer.parseInt(start[1]), Integer.parseInt(start[2]));
+        Codificatore c = new Codificatore(getRotoreInt(rotori[0]), getRotoreInt(rotori[1]), getRotoreInt(rotori[2]), getScambiatoreInt(scambString), getRiflettoreInt(riflString), Integer.parseInt(start[0]), Integer.parseInt(start[1]), Integer.parseInt(start[2]));
         
             boolean unknown;
             do {
@@ -43,9 +43,9 @@ public class Enigma {
                
                 switch (s) {
                     case "1":
-                        System.out.println("Messaggio originale: "+ rot.getMessaggio());
-                        System.out.println("Messagio codificato: " + c.carica(rot.getMessaggio()));
-                        c.reset(Integer.parseInt(start[0]), Integer.parseInt(start[0]), Integer.parseInt(start[0]));
+                        System.out.println("Messaggio originale: "+ files.getMessaggio());
+                        System.out.println("Messagio codificato: " + c.carica(files.getMessaggio()));
+                        c.reset();
                         unknown = true;
                         break;
                     
@@ -55,7 +55,7 @@ public class Enigma {
                         String sMessage = inputMessage.nextLine();
                         System.out.println("Messaggio originale: "+ sMessage);
                         System.out.println("Messagio codificato: " + c.carica(sMessage));
-                        c.reset(Integer.parseInt(start[0]), Integer.parseInt(start[0]), Integer.parseInt(start[0]));
+                        c.reset();
                         unknown = true;
                         break;
                     case "0":
@@ -97,7 +97,7 @@ public class Enigma {
         return scamb;
     }
 
-    private static int[] change(String rotore) {
+    private static int[] getRotoreInt(String rotore) {
         int[] rotoreInt = new int[26];
         int i = 0;
         for (char c : rotore.toCharArray()) {

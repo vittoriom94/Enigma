@@ -10,6 +10,10 @@ package enigma;
  * @author vimat
  */
 public class Codificatore {
+    static int ROTATION = 26;
+    static int A = 65;
+    static int Z = 90;
+    
     int i_start,j_start,k_start;
     int i,j,k;
     Rotore primo;
@@ -25,9 +29,9 @@ public class Codificatore {
         this.i=0;
         this.j=0;
         this.k=0;
-        primo = new Rotore(first);
-        secondo = new Rotore(second);
-        terzo = new Rotore(third);
+        this.primo = new Rotore(first);
+        this.secondo = new Rotore(second);
+        this.terzo = new Rotore(third);
         this.scambiatore = new DiscoEsterno(scambiatore);
         this.riflettore = new DiscoEsterno(riflettore);
         
@@ -39,7 +43,7 @@ public class Codificatore {
         
         String codifica = "";
         for(char c : messaggio.toCharArray()){
-            if (c>=65 && c<=90){
+            if (c>=A && c<=Z){
                 int x = this.traduci((c-65));
                 codifica = codifica + (char)(x+65);
             } else {
@@ -51,7 +55,6 @@ public class Codificatore {
     
     public  int traduci(int v){
      
-     // SOMMARE A i LO SPOSTAMENTO INIZIALE
      controlla_rotazione();
      v = scambiatore.getValueFront(v);
      v = primo.getValueFront(v,i+i_start);
@@ -70,20 +73,20 @@ public class Codificatore {
     public void controlla_rotazione(){
         i++;
 
-        if ( i == 26 ){
+        if ( i == ROTATION ){
             i = 0;
             j++;
-            if(j == 26){
+            if(j == ROTATION){
                 j = 0;
                 k++;
-                if(k==26){
+                if(k==ROTATION){
                     k=0;
                 }
             }
         }
         
     }
-    public void reset(int i, int j,int k){
+    public void reset(){
         this.i = 0;
         this.j = 0;
         this.k = 0;

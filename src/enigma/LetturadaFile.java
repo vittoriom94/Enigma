@@ -5,12 +5,8 @@ package enigma;
 */
 
 import java.io.*;
-import java.awt.*;
-import java.awt.List;
-import java.awt.event.*;
 import java.util.*;
 import java.util.HashSet;
-import java.lang.Object;
 
 public class LetturadaFile {
 
