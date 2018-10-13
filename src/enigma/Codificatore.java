@@ -62,7 +62,7 @@ public class Codificatore {
      v = secondo.getValueBack(v,j+j_start);
      v = primo.getValueBack(v,i+i_start);
      v = scambiatore.getValueFront(v);
-  
+ 
     
      return v;
     }
