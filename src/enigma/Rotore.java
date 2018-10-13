@@ -34,7 +34,7 @@ public class Rotore extends Disco{
         int value=rotore_back[index];
          return ((value+shift)%26+26)%26;
         
-        
+       
     }
    
    
