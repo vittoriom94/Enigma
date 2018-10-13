@@ -16,5 +16,4 @@ public class DiscoEsterno extends Disco{
             rotore_front[i]=values[i];
         }
     }
-
 }
