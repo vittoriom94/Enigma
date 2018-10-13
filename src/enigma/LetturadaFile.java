@@ -394,7 +394,6 @@ public class LetturadaFile {
         this.readFile(rot_path);
         param = this.readFile(conf_path);
         
-
         rotori = this.configRotors(rot_path, param[0]);
         
         messaggio = this.readFile(msg_path)[0];
