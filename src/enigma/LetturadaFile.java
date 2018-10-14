@@ -284,14 +284,15 @@ public class LetturadaFile {
             }
 
             Object[] myArr = h.toArray();
-            int value1 = Integer.parseInt(myArr[0].toString());
-            int value2 = Integer.parseInt(myArr[1].toString());
+            if(myArr.length != 0){
+                int value1 = Integer.parseInt(myArr[0].toString());
+                int value2 = Integer.parseInt(myArr[1].toString());
 
-            char val1 = (char) value1;
-            char val2 = (char) value2;
+                char val1 = (char) value1;
+                char val2 = (char) value2;
 
-            vett = vett + val1 + val2;
-
+                vett = vett + val1 + val2;
+            }
         }
 
         return vett;

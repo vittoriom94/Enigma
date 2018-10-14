@@ -21,24 +21,22 @@ public class Rotore extends Disco{
     }
     
      public int getValueFront(int i,int shift){
-       int index=((i-shift)%26+26)%26;
+        int index=((i+shift)%26+26)%26;
        int value=rotore_front[index];
-        return ((value+shift)%26+26)%26;
+        return ((value-shift)%26+26)%26;
        
         
     }
     public int getValueBack(int i,int shift){
-       
-       
-        int index=((i-shift)%26+26)%26;
+        int index=((i+shift)%26+26)%26;
         int value=rotore_back[index];
-         return ((value+shift)%26+26)%26;
+         return ((value-shift)%26+26)%26;
         
        
     }
    
    
-    public String toStringrback(int shift){
+    public String toStringback(int shift){
         String a = "";
         for (int i = 0; i<26;i++){
             a =a.concat((((rotore_back[((i-shift)%26+26)%26]+shift)%26+26)%26)+ " ");

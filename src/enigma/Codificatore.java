@@ -57,13 +57,13 @@ public class Codificatore {
      
      controlla_rotazione();
      v = scambiatore.getValueFront(v);
-     v = primo.getValueFront(v,i+i_start);
-     v = secondo.getValueFront(v,j+j_start);
-     v = terzo.getValueFront(v,k+k_start);
+     v = primo.getValueFront(v,(i+i_start)%26);
+     v = secondo.getValueFront(v,(j+j_start)%26);
+     v = terzo.getValueFront(v,(k+k_start)%26);
      v = riflettore.getValueFront(v);
-     v = terzo.getValueBack(v,k+k_start);
-     v = secondo.getValueBack(v,j+j_start);
-     v = primo.getValueBack(v,i+i_start);
+     v = terzo.getValueBack(v,(k+k_start)%26);
+     v = secondo.getValueBack(v,(j+j_start)%26);
+     v = primo.getValueBack(v,(i+i_start)%26);
      v = scambiatore.getValueFront(v);
  
     

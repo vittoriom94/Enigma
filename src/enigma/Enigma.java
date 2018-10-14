@@ -31,7 +31,7 @@ public class Enigma {
         String[] start = files.getStartPosition().split(" ");
         String scambString = files.getScambiatore();
         String riflString = files.getRiflettore();
-
+        
         Codificatore c = new Codificatore(getRotoreInt(rotori[0]), getRotoreInt(rotori[1]), getRotoreInt(rotori[2]), getScambiatoreInt(scambString), getRiflettoreInt(riflString), Integer.parseInt(start[0]), Integer.parseInt(start[1]), Integer.parseInt(start[2]));
         
             boolean unknown;
@@ -71,12 +71,14 @@ public class Enigma {
     }
 
     private static int[] getRiflettoreInt(String riflettore) {
+   
         int[] rifl = new int[26];
         for (int i = 0; i < riflettore.length(); i = i + 2) {
             String c = riflettore.substring(i, i + 2);
             rifl[(int) (c.charAt(0) - 65)] = (int) (c.charAt(1) - 65);
             rifl[(int) (c.charAt(1) - 65)] = (int) (c.charAt(0) - 65);
         }
+
         return rifl;
     }
 
@@ -94,6 +96,7 @@ public class Enigma {
                 scamb[x] = x;
             }
         }
+ 
         return scamb;
     }
 
